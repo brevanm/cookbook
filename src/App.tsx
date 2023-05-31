@@ -1,16 +1,41 @@
-import { useState } from 'react';
-import reactLogo from './assets/react.svg';
-import viteLogo from '/vite.svg';
-// import './App.css';s
-import HomePage from './pages/HomePage/HomePage';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import Home from './pages/Home';
+import Root from './pages/Root';
+import Error from './pages/Error';
+import Recipe from './pages/Recipe';
+import Create from './pages/Create';
+import { GoogleOAuthProvider } from '@react-oauth/google';
+
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <Root />,
+    children: [
+      {
+        path: '/',
+        element: <Home />
+      },
+      {
+        path: '/recipe/:id',
+        element: <Recipe />
+      },
+      {
+        path: '/create',
+        element: <Create />
+      }
+    ]
+  },
+  {
+    path: '*',
+    element: <Error />
+  }
+]);
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
-    <>
-      <HomePage />
-    </>
+    <GoogleOAuthProvider clientId="817265379484-0lsuj8ht7k0kifaij45m76up2pckieq3.apps.googleusercontent.com">
+      <RouterProvider router={router} />
+    </GoogleOAuthProvider>
   );
 }
 
