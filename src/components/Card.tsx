@@ -1,13 +1,14 @@
 import { Link } from 'react-router-dom';
 
 type Props = {
+  recipeid: string;
   name: string;
   img: string;
   categories: string[];
 };
 
 const Card = (props: Props) => {
-  const { categories, img, name } = props;
+  const { categories, img, name, recipeid } = props;
 
   const chips = categories.map((category) => {
     return (
@@ -20,7 +21,7 @@ const Card = (props: Props) => {
   });
 
   return (
-    <Link to={`/recipe/${name}`}>
+    <Link to={`/recipe/${recipeid}`}>
       <div className="w-64 h-52 hover:scale-105 transition bg-slate-500 rounded overflow-hidden hover:cursor-pointer">
         <div className="h-2/3">
           <img src={img} alt="random" className="w-full h-full object-cover" />
