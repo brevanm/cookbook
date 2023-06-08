@@ -21,6 +21,12 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 }
+
+textarea {
+  width: 33vw;
+  height: 20%;
+}
+
 /*
 a {
   font-weight: 500;

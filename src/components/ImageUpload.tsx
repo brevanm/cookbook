@@ -23,14 +23,14 @@ const ImageUpload = (props: Props) => {
     <>
       <input
         accept="image/*"
-        style={{ display: 'none' }}
+        // style={{ display: 'none' }}
         id="profile-photo-upload"
         type="file"
         onChange={handleChange}
       />
-      <label htmlFor="profile-photo-upload">
+      {/* <label htmlFor="profile-photo-upload">
         <Button>Upload</Button>
-      </label>
+      </label> */}
     </>
   );
 };

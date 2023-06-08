@@ -4,11 +4,11 @@ const cookbookApiUrl = 'http://localhost:8080';
 
 export type Ingredient = {
   name: string;
-  amount: number;
+  amount: string;
   measurement: string;
 };
 export type Recipe = {
-  recipeid: string;
+  recipeid?: string;
   title: string;
   img: string;
   instructions: string;
@@ -45,5 +45,16 @@ export default {
     };
 
     return axios.get(endpoint, request);
+  },
+  putRecipe: (recipe: Recipe) => {
+    const endpoint = `${cookbookApiUrl}/recipe`;
+    const request = {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    };
+
+    return axios.put(endpoint, recipe, request);
   }
 };

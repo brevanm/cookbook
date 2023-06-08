@@ -46,7 +46,7 @@ const Recipe = () => {
         <img className="w-full h-full object-cover" src="https://picsum.photos/200" alt="recipe" />
       </div>
       <h2 className="text-xl font-bold py-4">Ingredients</h2>
-      <ul className="list-disc">{ingredientsList}</ul>
+      <ol className="list-decimal">{ingredientsList}</ol>
       <h2 className="text-xl font-bold py-4">Instructions</h2>
       <p>{instructions}</p>
     </div>
