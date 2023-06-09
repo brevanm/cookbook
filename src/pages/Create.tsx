@@ -15,12 +15,15 @@ const Create = () => {
   const [tags, setTags] = useState<string[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
 
+  let readyToSubmit = image && title && instructions && ingredients && tags;
+  let tooLong = tags.length > 2;
+
   const submitRecipe = () => {
-    if (!image || !title || !instructions || !ingredients) return;
+    if (!image || !title || !instructions || !ingredients || !tags) return;
 
     setLoading(true);
     api
-      .putRecipe({ img: image, title, instructions, ingredients })
+      .putRecipe({ img: image, title, instructions, ingredients, tags })
       .then(() => {
         setImage(undefined);
         setTitle('');
@@ -34,8 +37,6 @@ const Create = () => {
       });
   };
   console.log({ image, title });
-
-  let tooLong = tags.length > 2;
   return (
     <div className="flex justify-center content-center items-center flex-col">
       <div className="w-1/3">
@@ -58,6 +59,7 @@ const Create = () => {
           {tags.map((tag, i) => {
             return (
               <TextField
+                key={`tag-${i}`}
                 className="w-1/6 mr-2"
                 text={tag}
                 onChange={(str) => {
@@ -114,7 +116,11 @@ const Create = () => {
           />
         </div>
         <div className="my-8 flex justify-end">
-          <Button onClick={submitRecipe}>{loading ? <Progress /> : 'Create Recipe'}</Button>
+          <Button
+            className={readyToSubmit ? '' : 'bg-slate-700 cursor-default'}
+            onClick={submitRecipe}>
+            {loading ? <Progress /> : 'Create Recipe'}
+          </Button>
         </div>
       </div>
     </div>

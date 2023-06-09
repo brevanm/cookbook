@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { imageApiUrl } from '../utils/api';
 
 type Props = {
   recipeid: string;
@@ -24,7 +25,7 @@ const Card = (props: Props) => {
     <Link to={`/recipe/${recipeid}`}>
       <div className="w-64 h-52 hover:scale-105 transition bg-slate-500 rounded overflow-hidden hover:cursor-pointer">
         <div className="h-2/3">
-          <img src={img} alt="random" className="w-full h-full object-cover" />
+          <img src={imageApiUrl + '/' + img} alt="random" className="w-full h-full object-cover" />
         </div>
         <div className="h-1/3 p-2 flex flex-col justify-between">
           <h3 className="truncate">{name}</h3>

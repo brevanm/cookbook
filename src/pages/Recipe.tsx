@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import api from '../utils/api';
+import api, { imageApiUrl } from '../utils/api';
 import type { Recipe } from '../utils/api';
 
 const Recipe = () => {
@@ -31,7 +31,7 @@ const Recipe = () => {
   if (error) return <div>{error}</div>;
   if (loading || !recipe) return <div>Loading...</div>;
 
-  const { title, ingredients, instructions } = recipe;
+  const { title, ingredients, instructions, img } = recipe;
 
   const ingredientsList = ingredients.map((ingredient) => {
     const { name, measurement, amount } = ingredient;
@@ -43,7 +43,7 @@ const Recipe = () => {
     <div className="mx-64 py-2">
       <h1 className="text-3xl font-bold py-4">{title}</h1>
       <div className="w-full aspect-w-16 aspect-h-9">
-        <img className="w-full h-full object-cover" src="https://picsum.photos/200" alt="recipe" />
+        <img className="w-full h-full object-cover" src={imageApiUrl + '/' + img} alt="recipe" />
       </div>
       <h2 className="text-xl font-bold py-4">Ingredients</h2>
       <ol className="list-decimal">{ingredientsList}</ol>

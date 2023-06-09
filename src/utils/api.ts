@@ -1,6 +1,8 @@
 import axios from 'axios';
 
-const cookbookApiUrl = 'http://localhost:8081';
+export const imageApiUrl = 'https://cookbook-birds-with-teeth.s3.us-east-2.amazonaws.com';
+const cookbookApiUrl = 'http://cookbook-service-env.eba-q6jvfdmq.us-east-2.elasticbeanstalk.com';
+// const cookbookApiUrl = 'http://localhost:8080';
 
 export type Ingredient = {
   name: string;
@@ -13,6 +15,7 @@ export type Recipe = {
   img: string;
   instructions: string;
   ingredients: Ingredient[];
+  tags: string[];
 };
 
 export default {
@@ -39,7 +42,7 @@ export default {
   },
   getRecipes: (tag?: string) => {
     let endpoint = `${cookbookApiUrl}/recipes`;
-    if (tag && !["all", "All Categories", "Eat Again"].includes(tag)) {
+    if (tag && !['all', 'All Categories', 'Eat Again'].includes(tag)) {
       endpoint += `?tag=${tag}`;
       console.log(endpoint);
     }
