@@ -1,12 +1,7 @@
 import MenuItem from './MenuItem';
 
-type option = {
-  value: string;
-  label: string;
-};
-
 type Props = {
-  options: option[];
+  options: string[];
   selected: string;
   onClick: React.Dispatch<React.SetStateAction<string>>;
 };
@@ -17,11 +12,10 @@ const Menu = (props: Props) => {
   return (
     <nav className="bg-slate-800 w-60 flex flex-col h-screen p-2 border-r border-slate-700 absolute left-0">
       {options.map((option) => {
-        const { value, label } = option;
 
         return (
-          <MenuItem key={value} onClick={() => onClick(value)} selected={value === selected}>
-            {label}
+          <MenuItem key={option} onClick={() => onClick(option)} selected={option === selected}>
+            {option}
           </MenuItem>
         );
       })}

@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const cookbookApiUrl = 'http://localhost:8080';
+const cookbookApiUrl = 'http://localhost:8081';
 
 export type Ingredient = {
   name: string;
@@ -37,8 +37,8 @@ export default {
 
     return axios.get(endpoint, request);
   },
-  getRecipes: (userId: string) => {
-    const endpoint = `${cookbookApiUrl}/recipes/${userId}`;
+  getRecipes: () => {
+    const endpoint = `${cookbookApiUrl}/recipes`;
     const request = {
       method: 'GET',
       headers: {}
@@ -56,5 +56,14 @@ export default {
     };
 
     return axios.put(endpoint, recipe, request);
+  },
+  getTags: () => {
+    const endpoint = `${cookbookApiUrl}/tags`;
+    const request = {
+      method: 'GET',
+      headers: {}
+    };
+
+    return axios.get(endpoint, request);
   }
 };
