@@ -55,7 +55,7 @@ const Home = () => {
           </div>
         )}
         {error && <div>{error}</div>}
-        <div className="w-full grid grid-flow-row grid-cols-4 gap-4 p-6" id="content">
+        <div className="w-full flex gap-6 flex-wrap p-6" id="content">
           {recipes &&
             recipes.map((recipe) => {
               const { title, img, recipeid } = recipe;

@@ -40,15 +40,15 @@ const Recipe = () => {
   });
 
   return (
-    <div className="mx-64 py-2">
+    <div className="mx-48 px-64 pt-2 pb-24">
       <h1 className="text-3xl font-bold py-4">{title}</h1>
-      <div className="w-full aspect-w-16 aspect-h-9">
+      <div className="w-3/5 h-fit">
         <img className="w-full h-full object-cover" src={imageApiUrl + '/' + img} alt="recipe" />
       </div>
       <h2 className="text-xl font-bold py-4">Ingredients</h2>
-      <ol className="list-decimal">{ingredientsList}</ol>
+      <ol className="list-decimal pl-10">{ingredientsList}</ol>
       <h2 className="text-xl font-bold py-4">Instructions</h2>
-      <p>{instructions}</p>
+      <p className="pl-10">{instructions}</p>
     </div>
   );
 };
