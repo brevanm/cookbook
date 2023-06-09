@@ -3,7 +3,7 @@ import Header from '../components/Header';
 
 const Root = () => {
   return (
-    <div className="bg-slate-800 h-screen">
+    <div className="bg-slate-800 min-h-screen">
       <Header />
       <Outlet />
     </div>
