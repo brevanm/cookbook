@@ -6,17 +6,33 @@ import type { Recipe } from '../utils/api';
 import Progress from '../components/Progress';
 
 const Home = () => {
-  const [selected, setSelected] = useState<string>('all');
+  const [selected, setSelected] = useState<string>('All Categories');
 
   const [recipes, setRecipes] = useState<Recipe[] | undefined>(undefined);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(undefined);
   const [menuItems, setMenuItems] = useState<string[]>(["All Categories", "Eat Again"]);
 
+  
+  useEffect(() => {
+    api
+    .getTags()
+    .then(({ data: { tags } }) => {
+      console.log({ tags });
+      setMenuItems([...new Set([...menuItems, ...tags])]);
+    })
+    .catch((error) => {
+      setError(error.message);
+    })
+    .finally(() => {
+      setLoading(false);
+    });
+  }, []);
+  
   useEffect(() => {
     setLoading(true);
     api
-      .getRecipes()
+      .getRecipes(selected)
       .then(({ data: { recipes } }) => {
         console.log({ recipes });
         setRecipes(recipes);
@@ -27,20 +43,8 @@ const Home = () => {
       .finally(() => {
         setLoading(false);
       });
-
-    api
-      .getTags()
-      .then(({ data: { tags } }) => {
-        console.log({ tags });
-        setMenuItems([...new Set([...menuItems, ...tags])]);
-      })
-      .catch((error) => {
-        setError(error.message);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-  }, []);
+    
+  }, [selected]);
 
   return (
     <div className="bg-slate-800 h-screen">

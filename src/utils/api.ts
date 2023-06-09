@@ -37,8 +37,12 @@ export default {
 
     return axios.get(endpoint, request);
   },
-  getRecipes: () => {
-    const endpoint = `${cookbookApiUrl}/recipes`;
+  getRecipes: (tag?: string) => {
+    let endpoint = `${cookbookApiUrl}/recipes`;
+    if (tag && !["all", "All Categories", "Eat Again"].includes(tag)) {
+      endpoint += `?tag=${tag}`;
+      console.log(endpoint);
+    }
     const request = {
       method: 'GET',
       headers: {}
